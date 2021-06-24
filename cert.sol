@@ -56,7 +56,7 @@ contract Certificate_Factory {
         emit Add(_name, _id, _ipfsHash, block.timestamp);
     }
     
-    // remove cert for id
+    // remove cert by id
     event Remove(uint indexed _id);
     
     function remove(uint _id) public {
