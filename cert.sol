@@ -52,6 +52,7 @@ contract Certificate_Factory {
         Certificate newCertificate = new Certificate(_name, _id, _ipfsHash);
         idToAddress[_id] = address(newCertificate);
         certificateAddresses.push(address(newCertificate));
+        ipfsHashExist[_ipfsHash] = true;
         emit Add(_name, _id, _ipfsHash, block.timestamp);
     }
     
@@ -63,6 +64,8 @@ contract Certificate_Factory {
         emit Remove(_id);
     }
     
+    // verify if ipfsHash exist
+    mapping(string => bool) ipfsHashExist;
 }
 
 contract Certificate {
@@ -101,3 +104,5 @@ contract Certificate {
         return factoryContractAddress;
     }
 }
+
+
