@@ -56,16 +56,23 @@ contract Certificate_Factory {
         emit Add(_name, _id, _ipfsHash, block.timestamp);
     }
     
-    // remove cert by id
+    // remove cert for id
     event Remove(uint indexed _id);
     
     function remove(uint _id) public {
+        require(msg.sender == owner);
         delete idToAddress[_id];
         emit Remove(_id);
     }
     
     // verify if ipfsHash exist
     mapping(string => bool) ipfsHashExist;
+    
+    function deleteIpfsHash(string memory _ipfsHash) public {
+        require(ipfsHashExist[_ipfsHash] == true, "Ipfs doesn't exist");
+        require(msg.sender == owner);
+        ipfsHashExist[_ipfsHash] = false;
+    }
 }
 
 contract Certificate {
@@ -104,5 +111,3 @@ contract Certificate {
         return factoryContractAddress;
     }
 }
-
-
