@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viasm</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="\images\logoviasm.png"></link>
+</head>
+<body>
+  <noscript>You have to enable Javascript to view this page</noscript>
+  <header>
+    <div class="side"></div>
+    <div class="side"></div>
+    <img id="header__logo" src="\images\logoviasm.png" alt="logo Viasm">
+  </header>
+  <nav id="navbar">
+    <div class="selected"></div>
+    <div class="cert hover">
+      <input type="button" onclick="transformx(1)">
+      <label onclick="transformx(1)">Certification</label>
+    </div>
+    <div class="verify hover" >
+      <input type="button" onclick="transformx(2) ">
+      <label onclick="transformx(2)">Verify</label>
+    </div>
+  </nav>
+  <div id="content">
+    <section id="certification">
+      <h2>Find your Certification</h2>
+      <form id="cert__find">
+        <input type="text" name="input__cert" id="input" placeholder="Type in address...">
+        <input type="button" name="Find" id="submit" value="Find">
+      </form>
+      <div id="cert__found" class="hidden">
+        <p id="link">Link Dowload: <a id="link__downloadable" href="#"></a></p>
+        <img src="\images\Certificate-temp.png" alt="Default image">
+      </div>
+    </section>
+    <section id="verify" class="hidden">
+      <form action="" method="" class="verify__left">  <!--SỬA DRAG AND DROP Ở ĐÂY-->
+        <div class="verify__left__uploadbox" >
+          <p class="verify__left__uploadbox__text"><Strong>Choose an image</Strong> or drag it here!</p>
+          <input type="file" accept="image/*" id="myFile" name="filename">
+          <img src="#" class="verify__left__uploadbox__image hidden" alt="Your image"></img>
+        </div>
+      </form>
+      <div class="verify__right">
+        <input id="verify__button" type="button" value="Verify!" class="verify__right__button">
+        <div class="verify__check">
+          <div class="circle checked__right hidden">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </div>
+          <div class="circle checked__wrong hidden">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="verify__text">
+          <p class="verify__text__right hidden">Verify successfully! This certification was issued by Vietnam Institute for Advanced Study in Mathematics (VIASM).</p>
+          <p class="verify__text__wrong hidden">Verify failed!! We don't recognize this certification.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer id="footer">
+    <div class="footer__leftside"></div>
+    <div class="footer__rightside"></div>
+    <div class="footer__left">
+      <img src="\images\logoviasm.png" class="footer__left__logo" alt="logo Viasm">
+    </div>
+    <div class="footer__right">
+      <p class="address">Địa chỉ: 157 phố Chùa Láng, phường Láng Thượng, quận Đống Đa, Hà Nội</p>
+      <p class="phone_fax">Điện thoại: (024) 3623 1542 - Fax: (024) 3623 1543</p>
+      <p class="email">Email: <a href="mailto:info@viasm.edu.vn" class="mail">info@viasm.edu.vn</a></p>
+      <p>Bản quyền © 2015 thuộc về Viện Nghiên cứu cao cấp về Toán.</p>
+      <p><a href="#">Designed by Comsoft</a></p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
