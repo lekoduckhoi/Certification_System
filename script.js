@@ -418,30 +418,30 @@ let check = false // sửa dòng này
             .then(function (response) {
               cid = response.data.IpfsHash;
               console.log(cid);
-              //unpin
-              const url = "https://api.pinata.cloud/pinning/unpin/"+ cid;
-              axios.delete(url, {
-                headers: {
-                  pinata_api_key: "fe8a1f46de05dcc4ad7e",
-                  pinata_secret_api_key: "3ae4d4e22fa0121975850eb3234a9e212e532e6d5e6e8ff544fa371e33af3fd2"
-                  }
-                })
-                .then(function (res) {
-                  console.log(res)
-                  certFacContract.methods.verify(cid).call((err, res1) => {
-                    if(/* Nếu verify thành công thì hiện dấu tick v xanh */res1 === true){
-                      checked__right.classList.remove('hidden')
-                      text_right.classList.remove('hidden')
-                    }
-                    else {
-                      checked__wrong.classList.remove('hidden')
-                      text_wrong.classList.remove('hidden')
+              certFacContract.methods.verify(cid).call((err, res1) => {
+                if(/* Nếu verify thành công thì hiện dấu tick v xanh */res1 === true){
+                  checked__right.classList.remove('hidden')
+                  text_right.classList.remove('hidden')
+                }
+                else { /* Nếu verify ko thành công thì hiện dấu tick đỏ và unpin ảnh vừa pin*/
+                  checked__wrong.classList.remove('hidden')
+                  text_wrong.classList.remove('hidden')
+                  //unpin
+                  const url = "https://api.pinata.cloud/pinning/unpin/"+ cid;
+                  axios.delete(url, {
+                  headers: {
+                    pinata_api_key: "fe8a1f46de05dcc4ad7e",
+                    pinata_secret_api_key: "3ae4d4e22fa0121975850eb3234a9e212e532e6d5e6e8ff544fa371e33af3fd2"
                     }
                   })
-                })
-                .catch(function (error) {
-                  alert("cant unpin")
-                })
+                  .then(function (res) {
+                    console.log(res)
+                  })
+                  .catch(function (error) {
+                    alert("cant unpin")
+                  })
+                }
+              })
             })
             .catch(function (error) {
                 alert("cant pin")
