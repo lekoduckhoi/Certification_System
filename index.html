@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="./image/logoviasm.png"></link>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
 </head>
 <body>
   <noscript>You have to enable Javascript to view this page</noscript>
@@ -34,9 +39,20 @@
         <input type="text" name="input__cert" id="input" placeholder="Type in address...">
         <input type="button" name="Find" id="submit" value="Find">
       </form>
-      <div id="cert__found" class="hidden">
-        <p id="link">Link Dowload: <a id="link__downloadable" href="#"></a></p>
-        <img src="./image/Certificate-temp.png" alt="Default image">
+      <div id="cert__found" class="hidden"> 
+      
+        <div style="text-align: center;" class="details">
+          <h1 id="abcd" style="font-size: 30px;"></h1>
+          <br>
+          <p id="issuedBy"></p>
+          <p id="course"></p>
+          <P id="date"></P>
+          <h2 id="issuedTo"></h2>
+          <br>
+        </div>
+        <p id="link">Link Dowload: <a target="_blank" id="link__downloadable" href=""></a></p>
+        <br>
+        <img src="" id="certImg" alt="Default image">
       </div>
     </section>
     <section id="verify" class="hidden">
