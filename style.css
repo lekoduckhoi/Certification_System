@@ -315,3 +315,9 @@ strong{
   height: 0;
   display: none !important;
 }
+#load {
+  
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
