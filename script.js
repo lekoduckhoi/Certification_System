@@ -6,6 +6,7 @@ let checked__wrong = document.querySelector('.checked__wrong')
 let checked__right = document.querySelector('.checked__right')
 let text_right = document.querySelector('.verify__text__right')
 let text_wrong = document.querySelector('.verify__text__wrong')
+$("#load").hide();
 function transformx(i){
   selected.style.left = selected.style.left === '50%' ? '' :'50%'
   if(i===1){
@@ -33,7 +34,7 @@ myFile.onchange = (e)=>{
     img.onload = function(){
       URL.revokeObjectURL(img.src)
     }
-    myFile.classList.add('hidden')
+    //myFile.classList.add('hidden')
     text.classList.add('hidden')
   }
 }
@@ -75,19 +76,6 @@ const certFacABI = [
 			}
 		],
 		"name": "Add",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "Remove",
 		"type": "event"
 	},
 	{
@@ -138,6 +126,19 @@ const certFacABI = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "Remove",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -262,7 +263,7 @@ const certFacABI = [
 		"type": "function"
 	}
 ]
-const certFacAddress = "0x74D9BAe0830d0c03041622d6F85EeF3dEf0c5dFd"
+const certFacAddress = "0x29F298926b9CE9f189D70d92A3Bbc2Ce9B68b35A"
 const certFacContract = new web3.eth.Contract(certFacABI, certFacAddress)
 
 const certABI = [
@@ -288,106 +289,80 @@ const certABI = [
 		"type": "constructor"
 	},
 	{
-		"inputs": [],
-		"name": "viewCreatedTime",
-		"outputs": [
+		"anonymous": false,
+		"inputs": [
 			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
 				"internalType": "uint256",
-				"name": "",
+				"name": "id",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "viewFactoryContractAddress",
-		"outputs": [
+			},
 			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "ipfsHash",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "createdTime",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
 				"internalType": "address",
-				"name": "",
+				"name": "factoryContractAddress",
 				"type": "address"
 			}
 		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "viewId",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "viewIpfsHash",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "viewName",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
+		"name": "Details",
+		"type": "event"
 	}
 ]
 var certAddress
-
 
 let submit = document.getElementById('submit')
 let link_downloadable = document.getElementById('link__downloadable')
 submit.addEventListener('click',()=>{
   let address = $("#input").val()
-  console.log(address)
-  console.log(typeof(address))
   if(!web3.utils.isAddress(address)) {
     alert("Please enter a valid address")
   } else {
-    cert_found.classList.remove('hidden')
+    $("#certImg").attr("src", "./image/loadd.gif")
+	cert_found.classList.remove('hidden')
     certFacContract.methods.verifyAddress(address).call((err, result) => {
       if(result == 0) {
         cert_found.classList.remove('hidden')
         link_downloadable.innerHTML = "No link found"
         $("#certImg").attr("src", "./image/defaultCert.jpg")
       }  else {
-        $("#abcd").html("CERTIFICATE DETAILS")
+		$("#abcd").html("CERTIFICATE DETAILS")
         $("#issuedBy").html("Issued By: Vietnam Institute for Advanced Study in Mathematics (VIASM).")
         $("#course").html("Course: BLOCKCHAIN MATHEMATICS AND COMPUTING")
         $("#date").html("Date: 04/07/2021")
 
         certAddress = address
         var certContract = new web3.eth.Contract(certABI, certAddress)
-        certContract.methods.viewCreatedTime().call().then(console.log)
-        certContract.methods.viewName().call((err, result) => {
-          $("#issuedTo").html("Issued To: " + result)
-        })
-        certContract.methods.viewIpfsHash().call((err, res) => {
-          $("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+res)
-          $("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+res)
-          $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+res)
-        })
+        certContract.getPastEvents(
+			'Details',
+			{ 
+				fromBlock: 10520249,
+				toBlock: 'latest'
+			},
+			(err, result) => { 
+				$("#issuedTo").html("Issued To: " + result[0].returnValues.name)
+				$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+         	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+        	    $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+			}
+		)
       }
     })
   }
@@ -399,10 +374,12 @@ let check = false // sửa dòng này
     var file;
     var inpFile = document.getElementById("myFile");
     $("#verify__button").click(function() {
+      $("#load").show()
       var cid
       file = inpFile.files[0]
       if (file == undefined) {
             alert("Please chose an image")
+			$("#load").hide();
         } else {
             let data = new FormData();
             data.append('file', file);
@@ -417,14 +394,15 @@ let check = false // sửa dòng này
                 })
             .then(function (response) {
               cid = response.data.IpfsHash;
-              console.log(cid);
               certFacContract.methods.verify(cid).call((err, res1) => {
                 if(/* Nếu verify thành công thì hiện dấu tick v xanh */res1 === true){
-                  checked__right.classList.remove('hidden')
+				  $("#load").hide();
+				  checked__right.classList.remove('hidden')
                   text_right.classList.remove('hidden')
                 }
                 else { /* Nếu verify ko thành công thì hiện dấu tick đỏ và unpin ảnh vừa pin*/
-                  checked__wrong.classList.remove('hidden')
+					$("#load").hide();
+				  checked__wrong.classList.remove('hidden')
                   text_wrong.classList.remove('hidden')
                   //unpin
                   const url = "https://api.pinata.cloud/pinning/unpin/"+ cid;
@@ -435,16 +413,19 @@ let check = false // sửa dòng này
                     }
                   })
                   .then(function (res) {
-                    console.log(res)
+					  console.log("unpin successfully")
                   })
                   .catch(function (error) {
                     alert("cant unpin")
+					$("#load").hide();
                   })
                 }
               })
             })
             .catch(function (error) {
                 alert("cant pin")
+				$("#load").hide();
             });
         }
     });   
+
