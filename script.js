@@ -398,7 +398,8 @@ let check = false // sửa dòng này
             alert("Please chose an image")
 			$("#load").hide();
         } else {
-            let data = new FormData();
+            
+			let data = new FormData();
             data.append('file', file);
             //pin to take cid
             axios.post(`https://api.pinata.cloud/pinning/pinFileToIPFS`, data, {
@@ -411,7 +412,7 @@ let check = false // sửa dòng này
                 })
             .then(function (response) {
               cid = response.data.IpfsHash;
-              certFacContract.methods.verify(cid).call((err, res1) => {
+              certFacContract.methods.verifyIpfsHash(cid).call((err, res1) => {
                 if(/* Nếu verify thành công thì hiện dấu tick v xanh */res1 === true){
 				  $("#load").hide();
 				  checked__right.classList.remove('hidden')
@@ -433,14 +434,15 @@ let check = false // sửa dòng này
 					  console.log("unpin successfully")
                   })
                   .catch(function (error) {
-                    alert("cant unpin")
+					alert("cant unpin")
 					$("#load").hide();
                   })
                 }
               })
             })
             .catch(function (error) {
-                alert("cant pin")
+                console.log(error)
+				alert("cant pin")
 				$("#load").hide();
             });
         }
