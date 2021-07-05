@@ -197,18 +197,21 @@ strong{
 }
 .verify__right{
   margin-right: 3rem;
+  text-align: center;
 }
 .verify__right__button{
-  display: block;
+  
   display: inline-block;
   background-color: #08addf;
   border: none;
   padding: 0 4rem;
   border-radius: .5rem;
   height: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .verify__right__button:hover{
-  background: rgb(255,80,90);
+  background-color: #27bce9;
 }
 .verify__check{
   width: 15rem;
