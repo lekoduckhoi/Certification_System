@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,16 +42,19 @@
       </form>
       <div id="cert__found" class="hidden"> 
       
-        <div style="text-align: center;" class="details">
+        <div  class="details">
+          <!-- style="text-align: center;" -->
           <h1 id="abcd" style="font-size: 30px;"></h1>
           <br>
-          <p id="issuedBy"></p>
           <p id="course"></p>
-          <P id="date"></P>
-          <h2 id="issuedTo"></h2>
-          <br>
+          <p id="issuedBy"></p>
+          <p id="issuedTo"></p>
+          <p id="bcaddress"></p>
+          <p id="idhash"></p>
+          <!-- add curriculum link here -->
+          <p id="more">Curriculum: <a id="curriculum" href=""></a></p>
         </div>
-        <p id="link">Link Dowload: <a target="_blank" id="link__downloadable" href="" download rel="noopener noreferrer" target="_blank"></a></p>
+        <p id="link">Certificate IPFS link: <a target="_blank" id="link__downloadable" href="" download rel="noopener noreferrer" target="_blank"></a></p>
         <br>
         <img src="" id="certImg" alt="Default image">
       </div>
@@ -77,7 +81,7 @@
         </div>
         <div class="verify__text">
           <p class="verify__text__right hidden">Verify successfully! This certification was issued by Vietnam Institute for Advanced Study in Mathematics (VIASM).</p>
-          <p class="verify__text__wrong hidden">Verify failed!! We don't recognize this certification.</p>
+          <p class="verify__text__wrong hidden">Verify failed! We don't recognize this certification.</p>
         </div>
       </div>
     </section>

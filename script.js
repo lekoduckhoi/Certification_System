@@ -330,9 +330,8 @@ submit.addEventListener('click',()=>{
 			$("#abcd").html("CERTIFICATE DETAILS")
 			$("#issuedBy").html("Issued By: Vietnam Institute for Advanced Study in Mathematics (VIASM).")
 			$("#course").html("Course: BLOCKCHAIN MATHEMATICS AND COMPUTING")
-			$("#date").html("Date: 04/07/2021")
-			console.log("smt")
-			console.log($("#abcd").val())
+			$("#bcaddress").html("Blockchain Address: " + res2)
+
 			certAddress = res2
 			var certContract = new web3.eth.Contract(certABI, certAddress)
 			certContract.getPastEvents(
@@ -343,6 +342,7 @@ submit.addEventListener('click',()=>{
 				},
 				(err, result) => { 
 					console.log(result)
+					$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
 					$("#issuedTo").html("Issued To: " + result[0].returnValues.name)
 					$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
 			 	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
@@ -360,12 +360,13 @@ submit.addEventListener('click',()=>{
         link_downloadable.innerHTML = "No link found"
         $("#certImg").attr("src", "./image/defaultCert.jpg")
       }  else {
+		console.log(address)
 		$("#abcd").html("CERTIFICATE DETAILS")
-        $("#issuedBy").html("Issued By: Vietnam Institute for Advanced Study in Mathematics (VIASM).")
+        $("#issuedBy").html("Issued by: Vietnam Institute for Advanced Study in Mathematics (VIASM)")
         $("#course").html("Course: BLOCKCHAIN MATHEMATICS AND COMPUTING")
-        $("#date").html("Date: 04/07/2021")
-
-        certAddress = address
+        $("#bcaddress").html("Blockchain Address: " + address)
+        
+		certAddress = address
         var certContract = new web3.eth.Contract(certABI, certAddress)
         certContract.getPastEvents(
 			'Details',
@@ -374,7 +375,8 @@ submit.addEventListener('click',()=>{
 				toBlock: 'latest'
 			},
 			(err, result) => { 
-				$("#issuedTo").html("Issued To: " + result[0].returnValues.name)
+				$("#issuedTo").html("Issued to: " + result[0].returnValues.name)
+				$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
 				$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
          	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
         	    $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
@@ -398,7 +400,10 @@ let check = false // sửa dòng này
             alert("Please chose an image")
 			$("#load").hide();
         } else {
-            
+            	checked__right.classList.add('hidden')
+                  text_right.classList.add('hidden')
+				  checked__wrong.classList.add('hidden')
+                  text_wrong.classList.add('hidden')
 			let data = new FormData();
             data.append('file', file);
             //pin to take cid
@@ -406,8 +411,8 @@ let check = false // sửa dòng này
                     maxBodyLength: 'Infinity', //this is needed to prevent axios from erroring out with large files
                     headers: {
                         'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-                        pinata_api_key: "fe8a1f46de05dcc4ad7e",
-                        pinata_secret_api_key: "3ae4d4e22fa0121975850eb3234a9e212e532e6d5e6e8ff544fa371e33af3fd2"
+                        pinata_api_key: "50f2427237e2ba6f5487",
+                        pinata_secret_api_key: "e7b44cb55ec2ac21e8b60e10b3ae1edfb2e2bc850e07d573df2e6b48b4bf95bb"
                     }
                 })
             .then(function (response) {
@@ -426,8 +431,8 @@ let check = false // sửa dòng này
                   const url = "https://api.pinata.cloud/pinning/unpin/"+ cid;
                   axios.delete(url, {
                   headers: {
-                    pinata_api_key: "fe8a1f46de05dcc4ad7e",
-                    pinata_secret_api_key: "3ae4d4e22fa0121975850eb3234a9e212e532e6d5e6e8ff544fa371e33af3fd2"
+                    pinata_api_key: "50f2427237e2ba6f5487",
+                    pinata_secret_api_key: "e7b44cb55ec2ac21e8b60e10b3ae1edfb2e2bc850e07d573df2e6b48b4bf95bb"
                     }
                   })
                   .then(function (res) {
@@ -462,7 +467,6 @@ for(i=40;i<=59;i++){temp=(rotate_left(A,5)+((B&C)|(B&D)|(C&D))+E+W[i]+0x8F1BBCDC
 for(i=60;i<=79;i++){temp=(rotate_left(A,5)+(B^C^D)+E+W[i]+0xCA62C1D6)&0x0ffffffff;E=D;D=C;C=rotate_left(B,30);B=A;A=temp;}
 H0=(H0+A)&0x0ffffffff;H1=(H1+B)&0x0ffffffff;H2=(H2+C)&0x0ffffffff;H3=(H3+D)&0x0ffffffff;H4=(H4+E)&0x0ffffffff;}
 var temp=cvt_hex(H0)+cvt_hex(H1)+cvt_hex(H2)+cvt_hex(H3)+cvt_hex(H4);return temp.toLowerCase();}
-
 
 
 
