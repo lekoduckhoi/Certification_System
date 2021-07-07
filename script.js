@@ -39,7 +39,7 @@ myFile.onchange = (e)=>{
   }
 }
 
-const web3 = new Web3('https://ropsten.infura.io/v3/d92fd0d900fc4b85bf4090eb5478ba41')
+const web3 = new Web3('https://speedy-nodes-nyc.moralis.io/3840e8054e43db71398d43ec/bsc/testnet')
 
 const certFacABI = [
 	{
@@ -79,32 +79,6 @@ const certFacABI = [
 		"type": "event"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "string",
-				"name": "_id",
-				"type": "string"
-			}
-		],
-		"name": "Remove",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_newIssuer",
-				"type": "address"
-			}
-		],
-		"name": "AddIssuer",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -125,6 +99,58 @@ const certFacABI = [
 		"name": "addCertificate",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newIssuer",
+				"type": "address"
+			}
+		],
+		"name": "AddIssuer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "_id",
+				"type": "string"
+			}
+		],
+		"name": "Remove",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_program_ipfs",
+				"type": "string"
+			}
+		],
+		"name": "setProgramIpfs",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "program_ipfs",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -212,6 +238,19 @@ const certFacABI = [
 	},
 	{
 		"inputs": [],
+		"name": "viewProgram_ipfs",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "viewProgramCreationTime",
 		"outputs": [
 			{
@@ -250,7 +289,7 @@ const certFacABI = [
 		"type": "function"
 	}
 ]
-const certFacAddress = "0xA73E9a3EdDDb3A0D207e24bE47cc299f21e3cc41"
+const certFacAddress = "0xE6e8F7cc7Cf320639036248d3B75D72ED30eaC5C"
 const certFacContract = new web3.eth.Contract(certFacABI, certFacAddress)
 
 const certABI = [
@@ -323,7 +362,10 @@ submit.addEventListener('click',()=>{
   if(!web3.utils.isAddress(address)) {
 	certFacContract.methods.viewCertAddressById(SHA1(address)).call((err, res2) => {
 		if(res2 == "0x0000000000000000000000000000000000000000"){
-			alert("Please enter a valid citizen identification number")
+			alert("cert not found")
+			//cert_found.classList.remove('hidden')
+        	link_downloadable.innerHTML = "No link found"
+        	$("#certImg").attr("src", "./image/defaultCert.jpg")
 		} else {
 			cert_found.classList.remove('hidden')
 			$("#certImg").attr("src", "./image/loadd.gif")
@@ -337,7 +379,7 @@ submit.addEventListener('click',()=>{
 			certContract.getPastEvents(
 				'Details',
 				{ 
-					fromBlock: 10520249,
+					fromBlock: 10000000,
 					toBlock: 'latest'
 				},
 				(err, result) => { 
