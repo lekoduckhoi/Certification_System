@@ -115,6 +115,19 @@ const certFacABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_id",
+				"type": "string"
+			}
+		],
+		"name": "remove",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -289,7 +302,7 @@ const certFacABI = [
 		"type": "function"
 	}
 ]
-const certFacAddress = "0xE6e8F7cc7Cf320639036248d3B75D72ED30eaC5C"
+const certFacAddress = "0x3e4c8674233A4d0a2FDe479757D1219ee41192Db"
 const certFacContract = new web3.eth.Contract(certFacABI, certFacAddress)
 
 const certABI = [
@@ -413,7 +426,7 @@ submit.addEventListener('click',()=>{
         certContract.getPastEvents(
 			'Details',
 			{ 
-				fromBlock: 10520249,
+				fromBlock: 10000000,
 				toBlock: 'latest'
 			},
 			(err, result) => { 
