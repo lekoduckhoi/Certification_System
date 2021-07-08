@@ -399,9 +399,9 @@ submit.addEventListener('click',()=>{
 					console.log(result)
 					$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
 					$("#issuedTo").html("Issued To: " + result[0].returnValues.name)
-					$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
-			 	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
-				    $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+					$("#link__downloadable").attr("href","https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
+			 	  	$("#link__downloadable").html("https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
+				    $("#certImg").attr("src", "https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
 				}
 			)
 		}
@@ -432,9 +432,9 @@ submit.addEventListener('click',()=>{
 			(err, result) => { 
 				$("#issuedTo").html("Issued to: " + result[0].returnValues.name)
 				$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
-				$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
-         	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
-        	    $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+				$("#link__downloadable").attr("href","https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
+         	  	$("#link__downloadable").html("https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
+        	    $("#certImg").attr("src", "https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
 			}
 		)
       }
