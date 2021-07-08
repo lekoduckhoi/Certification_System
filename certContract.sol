@@ -33,7 +33,11 @@ contract Certificate_Factory {
     // Program details 
     string private name = "BLOCKCHAIN MATHEMATICS AND COMPUTING (25-27/6/2021, 3-4/7/2021)";
     string private host = "VIASM (Vietnam Institute for Advanced Study in Mathematics)";
-
+    string public program_ipfs;
+    
+    function viewProgram_ipfs() public view returns(string memory) {
+        return program_ipfs;
+    }
     function viewProgramName() public view returns(string memory) {
         return name;
     }
@@ -63,6 +67,11 @@ contract Certificate_Factory {
         require(msg.sender == owner || isIssuer[msg.sender] == true, "Must be owner or Issuer");
         isIssuer[_newIssuer] = true;
     }
+    //function set program_ipfs
+    function setProgramIpfs(string memory _program_ipfs) public {
+        require(msg.sender == owner);
+        program_ipfs = _program_ipfs;
+    }
     
     function addCertificate(string memory _name, string memory _id, string memory _ipfsHash) public {
         require(msg.sender == owner || isIssuer[msg.sender] == true, "Must be owner or Issuer");
@@ -77,7 +86,7 @@ contract Certificate_Factory {
         emit Add(_name, _id, _ipfsHash, block.timestamp);
     }
     
-    function remove(string memory _id) private {
+    function remove(string memory _id) public {
         require(msg.sender == owner || isIssuer[msg.sender] == true, "Must be owner or Issuer");
         certCounter--;
         delete idToAddress[_id];
