@@ -39,7 +39,7 @@ myFile.onchange = (e)=>{
   }
 }
 
-const web3 = new Web3('https://speedy-nodes-nyc.moralis.io/3840e8054e43db71398d43ec/bsc/testnet')
+const web3 = new Web3('https://speedy-nodes-nyc.moralis.io/3840e8054e43db71398d43ec/bsc/mainnet')
 
 const certFacABI = [
 	{
@@ -302,7 +302,7 @@ const certFacABI = [
 		"type": "function"
 	}
 ]
-const certFacAddress = "0x3e4c8674233A4d0a2FDe479757D1219ee41192Db"
+const certFacAddress = "0x250AbDc27C98E8067aE920d6aCdEe2Dcc59D7971"
 const certFacContract = new web3.eth.Contract(certFacABI, certFacAddress)
 
 const certABI = [
@@ -392,7 +392,7 @@ submit.addEventListener('click',()=>{
 			certContract.getPastEvents(
 				'Details',
 				{ 
-					fromBlock: 10000000,
+					fromBlock: 8970000,
 					toBlock: 'latest'
 				},
 				(err, result) => { 
@@ -426,7 +426,7 @@ submit.addEventListener('click',()=>{
         certContract.getPastEvents(
 			'Details',
 			{ 
-				fromBlock: 10000000,
+				fromBlock: 8970000,
 				toBlock: 'latest'
 			},
 			(err, result) => { 
