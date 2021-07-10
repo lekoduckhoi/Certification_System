@@ -94,6 +94,7 @@ header{
   position: absolute;
   font-size: 1.2em;
   font-weight: 600;
+  pointer-events: none;
 }
 .selected{
   position: absolute;
@@ -149,6 +150,9 @@ h2{
   font-size: 1.2rem;
   font-weight: 500;
 }
+#abcd{
+  font-size: 30px;
+}
 #certification{
   min-height: 25rem;
   transition: .5s;
@@ -184,13 +188,15 @@ h2{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  text-overflow: hidden;
 }
 .verify__left__uploadbox__image{
   position: absolute;
   left: 50%;
-  height: 100%;
+  height: calc(100% - 2rem);
   width: auto;
   transform: translateX(-50%);
+  top: 2rem;
 }
 strong{
   font-size: 1em;
@@ -198,6 +204,7 @@ strong{
 .verify__right{
   margin-right: 3rem;
   text-align: center;
+  margin-top: 1rem;
 }
 .verify__right__button{
   
@@ -223,7 +230,6 @@ strong{
 .verify__text{
   width: 15rem;
   word-wrap: break-word;
-  height: 10rem;
   font-weight: 600;
 }
 .circle{

@@ -1,0 +1,115 @@
+@media only screen and (max-width : 1200px){
+    body{
+      padding: 0;
+      font-size: 14px;
+    }
+    header{
+      height: 5.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .side,.footer__leftside,.footer__rightside{
+      display: none;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+    }
+    #header__logo{
+      height: 3.2rem;
+    }
+    #content{
+      padding-top: 1rem;
+    }
+    #certification{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #cert__find{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #input{
+      width: 80vw;
+      margin-bottom: .7rem;
+    }
+    #input::placeholder{
+      font-size: 12px;
+    }
+    #submit{
+      padding: 0 6rem;
+    }
+    #cert__found{
+      max-width: 100vw;
+      word-break: break-all;
+    }
+    .details{
+      font-size: 12px;
+      max-width: 100%;
+      padding: 0 .5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .details p{
+      margin-top: -1rem;
+    }
+    #abcd{
+      font-size: 20px;
+      margin-bottom: .5rem;
+      margin-top: .5rem;
+    }
+    #issuedTo{
+      margin-left: -4.7rem;
+    }
+    #link{
+      padding-left: .5rem;
+    }
+    #verify{
+      flex-direction: column;
+      justify-content: center;
+    }
+    .verify__left{
+      height: 30vh;
+      width: 100%;
+    }
+    strong{
+      font-size: 14px;
+    }
+    .verify__left__uploadbox{
+      overflow: hidden;
+    }
+    .verify__right{
+      margin: 1rem 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #verify__button{
+      padding: 0 6rem;
+    }
+    .verify__check,.verify__text{
+      margin-right: 0;
+    }
+    #footer{
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #414448;
+    }
+    .footer__left{
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+    }
+    .footer__right{
+      margin: 0;
+      background: #414448;
+      padding: 0 1rem 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+      display: flex;
+    }
+  }

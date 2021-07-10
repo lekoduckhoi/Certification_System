@@ -444,7 +444,7 @@ submit.addEventListener('click',()=>{
 
 // verify part
 let verify_button = document.getElementById('verify__button')
-let check = false // sửa dòng này
+let check = null // sửa dòng này
     var file;
     var inpFile = document.getElementById("myFile");
     $("#verify__button").click(function() {
@@ -522,6 +522,3 @@ for(i=40;i<=59;i++){temp=(rotate_left(A,5)+((B&C)|(B&D)|(C&D))+E+W[i]+0x8F1BBCDC
 for(i=60;i<=79;i++){temp=(rotate_left(A,5)+(B^C^D)+E+W[i]+0xCA62C1D6)&0x0ffffffff;E=D;D=C;C=rotate_left(B,30);B=A;A=temp;}
 H0=(H0+A)&0x0ffffffff;H1=(H1+B)&0x0ffffffff;H2=(H2+C)&0x0ffffffff;H3=(H3+D)&0x0ffffffff;H4=(H4+E)&0x0ffffffff;}
 var temp=cvt_hex(H0)+cvt_hex(H1)+cvt_hex(H2)+cvt_hex(H3)+cvt_hex(H4);return temp.toLowerCase();}
-
-
-
