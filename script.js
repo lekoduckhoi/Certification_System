@@ -1,3 +1,4 @@
+
 let selected = document.querySelector('.selected')
 let cert = document.getElementById('certification')
 let verify = document.getElementById('verify')
@@ -396,12 +397,11 @@ submit.addEventListener('click',()=>{
 					toBlock: 'latest'
 				},
 				(err, result) => { 
-					console.log(result)
 					$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
 					$("#issuedTo").html("Issued To: " + result[0].returnValues.name)
-					$("#link__downloadable").attr("href","https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
-			 	  	$("#link__downloadable").html("https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
-				    $("#certImg").attr("src", "https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
+					$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+			 	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+				    $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
 				}
 			)
 		}
@@ -415,7 +415,7 @@ submit.addEventListener('click',()=>{
         link_downloadable.innerHTML = "No link found"
         $("#certImg").attr("src", "./image/defaultCert.jpg")
       }  else {
-		console.log(address)
+		
 		$("#abcd").html("CERTIFICATE DETAILS")
         $("#issuedBy").html("Issued by: Vietnam Institute for Advanced Study in Mathematics (VIASM)")
         $("#course").html("Course: BLOCKCHAIN MATHEMATICS AND COMPUTING")
@@ -432,9 +432,9 @@ submit.addEventListener('click',()=>{
 			(err, result) => { 
 				$("#issuedTo").html("Issued to: " + result[0].returnValues.name)
 				$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
-				$("#link__downloadable").attr("href","https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
-         	  	$("#link__downloadable").html("https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
-        	    $("#certImg").attr("src", "https://ipfs.io/ipfs/"+result[0].returnValues.ipfsHash)
+				$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+         	  	$("#link__downloadable").html("https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
+        	    $("#certImg").attr("src", "https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
 			}
 		)
       }
@@ -444,7 +444,7 @@ submit.addEventListener('click',()=>{
 
 // verify part
 let verify_button = document.getElementById('verify__button')
-let check = null // sửa dòng này
+let check = false // sửa dòng này
     var file;
     var inpFile = document.getElementById("myFile");
     $("#verify__button").click(function() {
@@ -501,7 +501,6 @@ let check = null // sửa dòng này
               })
             })
             .catch(function (error) {
-                console.log(error)
 				alert("cant pin")
 				$("#load").hide();
             });
@@ -522,3 +521,6 @@ for(i=40;i<=59;i++){temp=(rotate_left(A,5)+((B&C)|(B&D)|(C&D))+E+W[i]+0x8F1BBCDC
 for(i=60;i<=79;i++){temp=(rotate_left(A,5)+(B^C^D)+E+W[i]+0xCA62C1D6)&0x0ffffffff;E=D;D=C;C=rotate_left(B,30);B=A;A=temp;}
 H0=(H0+A)&0x0ffffffff;H1=(H1+B)&0x0ffffffff;H2=(H2+C)&0x0ffffffff;H3=(H3+D)&0x0ffffffff;H4=(H4+E)&0x0ffffffff;}
 var temp=cvt_hex(H0)+cvt_hex(H1)+cvt_hex(H2)+cvt_hex(H3)+cvt_hex(H4);return temp.toLowerCase();}
+
+
+
