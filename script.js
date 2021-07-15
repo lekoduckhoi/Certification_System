@@ -40,7 +40,7 @@ myFile.onchange = (e)=>{
   }
 }
 
-const web3 = new Web3('https://speedy-nodes-nyc.moralis.io/3840e8054e43db71398d43ec/bsc/mainnet')
+const web3 = new Web3("https://bsc-dataseed1.binance.org/")
 
 const certFacABI = [
 	{
@@ -381,6 +381,7 @@ submit.addEventListener('click',()=>{
         	link_downloadable.innerHTML = "No link found"
         	$("#certImg").attr("src", "./image/defaultCert.jpg")
 		} else {
+			console.log(1)
 			cert_found.classList.remove('hidden')
 			$("#certImg").attr("src", "./image/loadd.gif")
 			$("#abcd").html("CERTIFICATE DETAILS")
@@ -393,10 +394,11 @@ submit.addEventListener('click',()=>{
 			certContract.getPastEvents(
 				'Details',
 				{ 
-					fromBlock: 8970000,
-					toBlock: 'latest'
+					fromBlock: 8972508,
+					toBlock: 8977500
 				},
 				(err, result) => { 
+					console.log(result)
 					$("#idhash").html("Recipient ID hash: " + result[0].returnValues.id)
 					$("#issuedTo").html("Issued To: " + result[0].returnValues.name)
 					$("#link__downloadable").attr("href","https://gateway.pinata.cloud/ipfs/"+result[0].returnValues.ipfsHash)
@@ -426,8 +428,8 @@ submit.addEventListener('click',()=>{
         certContract.getPastEvents(
 			'Details',
 			{ 
-				fromBlock: 8970000,
-				toBlock: 'latest'
+				fromBlock: 8972508,
+				toBlock: 8977500
 			},
 			(err, result) => { 
 				$("#issuedTo").html("Issued to: " + result[0].returnValues.name)
@@ -521,6 +523,3 @@ for(i=40;i<=59;i++){temp=(rotate_left(A,5)+((B&C)|(B&D)|(C&D))+E+W[i]+0x8F1BBCDC
 for(i=60;i<=79;i++){temp=(rotate_left(A,5)+(B^C^D)+E+W[i]+0xCA62C1D6)&0x0ffffffff;E=D;D=C;C=rotate_left(B,30);B=A;A=temp;}
 H0=(H0+A)&0x0ffffffff;H1=(H1+B)&0x0ffffffff;H2=(H2+C)&0x0ffffffff;H3=(H3+D)&0x0ffffffff;H4=(H4+E)&0x0ffffffff;}
 var temp=cvt_hex(H0)+cvt_hex(H1)+cvt_hex(H2)+cvt_hex(H3)+cvt_hex(H4);return temp.toLowerCase();}
-
-
-
