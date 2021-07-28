@@ -446,7 +446,7 @@ submit.addEventListener('click',()=>{
 
 // verify part
 let verify_button = document.getElementById('verify__button')
-let check = false // sửa dòng này
+let check = false // sá»­a dĂ²ng nĂ y
     var file;
     var inpFile = document.getElementById("myFile");
     $("#verify__button").click(function() {
@@ -475,12 +475,12 @@ let check = false // sửa dòng này
             .then(function (response) {
               cid = response.data.IpfsHash;
               certFacContract.methods.verifyIpfsHash(cid).call((err, res1) => {
-                if(/* Nếu verify thành công thì hiện dấu tick v xanh */res1 === true){
+                if(/* Náº¿u verify thĂ nh cĂ´ng thĂ¬ hiá»‡n dáº¥u tick v xanh */res1 === true){
 				  $("#load").hide();
 				  checked__right.classList.remove('hidden')
                   text_right.classList.remove('hidden')
                 }
-                else { /* Nếu verify ko thành công thì hiện dấu tick đỏ và unpin ảnh vừa pin*/
+                else { /* Náº¿u verify ko thĂ nh cĂ´ng thĂ¬ hiá»‡n dáº¥u tick Ä‘á» vĂ  unpin áº£nh vá»«a pin*/
 					$("#load").hide();
 				  checked__wrong.classList.remove('hidden')
                   text_wrong.classList.remove('hidden')
